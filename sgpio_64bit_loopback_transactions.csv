@@ -1,0 +1,234 @@
+seq,operation,phase,frame,channel,address_offset,write_value,read_mask,expected_value,comparison,EQ,timeout_us,register,description
+1,WRITE,setup,,,0x100,0x00000000,,,,,,ENG0_CFG,Park ENG0
+2,WRITE,setup,,,0x200,0x00000000,,,,,,ENG1_CFG,Park ENG1
+3,WRITE,setup,,,0x148,0x00000101,,,,,,ENG0_TX_FIFO_CTRL,Flush all ENG0 TX FIFOs and set WM=1
+4,WRITE,setup,,,0x288,0x00000101,,,,,,ENG1_RX_FIFO_CTRL,Flush all ENG1 RX FIFOs and set WM=1
+5,WRITE,setup,,,0x110,0x0000389C,,,,,,ENG0_PINMUX,Straight mapping CH0=LD CH1=O CH2=I
+6,WRITE,setup,,,0x210,0x0000389C,,,,,,ENG1_PINMUX,Straight mapping CH0=LD CH1=O CH2=I
+7,WRITE,setup,,,0x114,0x00000001,,,,,,ENG0_IN_FILT,Input filter depth 1
+8,WRITE,setup,,,0x214,0x00000001,,,,,,ENG1_IN_FILT,Input filter depth 1
+9,WRITE,setup,,,0x104,0x000000C7,,,,,,ENG0_CLKDIV_HI,200 PCLK high phase
+10,WRITE,setup,,,0x10C,0x000000C7,,,,,,ENG0_CLKDIV_LO,200 PCLK low phase
+11,WRITE,setup,,,0x140,0x0000000E,,,,,,ENG0_TX_CTRL,SDR rising-edge launch and idle high
+12,WRITE,setup,,,0x200,0x00000099,,,,,,ENG1_CFG,Enable ENG1 in slave mode
+13,WRITE,setup,,,0x2BC,0x00000101,,,,,,ENG1_RX_SYNC,One-sample high SLOAD marker
+14,WRITE,setup,,,0x280,0x00004009,,,,,,ENG1_RX_CTRL,Enable 64-bit framed RX on falling edge
+15,WRITE,preload,0,CH0,0x154,0x00000001,,,,,,ENG0_TXDATA0,Framing word bits 31:0
+16,WRITE,preload,0,CH0,0x158,0x00000000,,,,,,ENG0_TXDATA1,Framing word bits 63:32
+17,WRITE,preload,0,CH0,0x160,0x00000000,,,,,,ENG0_TXPUSH_CH0,Commit framing channel
+18,WRITE,preload,0,CH1,0x154,0x00000000,,,,,,ENG0_TXDATA0,DATA0=0 bits 31:0
+19,WRITE,preload,0,CH1,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA0=0 bits 63:32
+20,WRITE,preload,0,CH1,0x164,0x00000000,,,,,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+21,WRITE,preload,0,CH2,0x154,0x00000001,,,,,,ENG0_TXDATA0,DATA1=1 bits 31:0
+22,WRITE,preload,0,CH2,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA1=1 bits 63:32
+23,WRITE,preload,0,CH2,0x168,0x00000000,,,,,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+24,WRITE,preload,0,CTL,0x16C,0x00000040,,,,,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+25,WRITE,preload,1,CH0,0x154,0x00000001,,,,,,ENG0_TXDATA0,Framing word bits 31:0
+26,WRITE,preload,1,CH0,0x158,0x00000000,,,,,,ENG0_TXDATA1,Framing word bits 63:32
+27,WRITE,preload,1,CH0,0x160,0x00000000,,,,,,ENG0_TXPUSH_CH0,Commit framing channel
+28,WRITE,preload,1,CH1,0x154,0x00000002,,,,,,ENG0_TXDATA0,DATA0=2 bits 31:0
+29,WRITE,preload,1,CH1,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA0=2 bits 63:32
+30,WRITE,preload,1,CH1,0x164,0x00000000,,,,,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+31,WRITE,preload,1,CH2,0x154,0x00000003,,,,,,ENG0_TXDATA0,DATA1=3 bits 31:0
+32,WRITE,preload,1,CH2,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA1=3 bits 63:32
+33,WRITE,preload,1,CH2,0x168,0x00000000,,,,,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+34,WRITE,preload,1,CTL,0x16C,0x00000040,,,,,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+35,WRITE,preload,2,CH0,0x154,0x00000001,,,,,,ENG0_TXDATA0,Framing word bits 31:0
+36,WRITE,preload,2,CH0,0x158,0x00000000,,,,,,ENG0_TXDATA1,Framing word bits 63:32
+37,WRITE,preload,2,CH0,0x160,0x00000000,,,,,,ENG0_TXPUSH_CH0,Commit framing channel
+38,WRITE,preload,2,CH1,0x154,0x00000004,,,,,,ENG0_TXDATA0,DATA0=4 bits 31:0
+39,WRITE,preload,2,CH1,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA0=4 bits 63:32
+40,WRITE,preload,2,CH1,0x164,0x00000000,,,,,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+41,WRITE,preload,2,CH2,0x154,0x00000005,,,,,,ENG0_TXDATA0,DATA1=5 bits 31:0
+42,WRITE,preload,2,CH2,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA1=5 bits 63:32
+43,WRITE,preload,2,CH2,0x168,0x00000000,,,,,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+44,WRITE,preload,2,CTL,0x16C,0x00000040,,,,,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+45,WRITE,preload,3,CH0,0x154,0x00000001,,,,,,ENG0_TXDATA0,Framing word bits 31:0
+46,WRITE,preload,3,CH0,0x158,0x00000000,,,,,,ENG0_TXDATA1,Framing word bits 63:32
+47,WRITE,preload,3,CH0,0x160,0x00000000,,,,,,ENG0_TXPUSH_CH0,Commit framing channel
+48,WRITE,preload,3,CH1,0x154,0x00000006,,,,,,ENG0_TXDATA0,DATA0=6 bits 31:0
+49,WRITE,preload,3,CH1,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA0=6 bits 63:32
+50,WRITE,preload,3,CH1,0x164,0x00000000,,,,,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+51,WRITE,preload,3,CH2,0x154,0x00000007,,,,,,ENG0_TXDATA0,DATA1=7 bits 31:0
+52,WRITE,preload,3,CH2,0x158,0x00000000,,,,,,ENG0_TXDATA1,DATA1=7 bits 63:32
+53,WRITE,preload,3,CH2,0x168,0x00000000,,,,,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+54,WRITE,preload,3,CTL,0x16C,0x00000040,,,,,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+55,WRITE,start,,,0x100,0x00000091,,,,,,ENG0_CFG,Enable ENG0 before START
+56,WRITE,start,,,0x100,0x00000093,,,,,,ENG0_CFG,Pulse START while ENG0 is enabled
+57,POLL,tx_wait,4,,0x150,,0x00000F00,0x00000000,masked_eq,1,100,ENG0_TX_FIFO_FLAGS,Wait until FULL[3:0] is zero before writing a complete frame
+58,WRITE,refill,4,CH0,0x154,0x00000001,,,,0,,ENG0_TXDATA0,Framing word bits 31:0
+59,WRITE,refill,4,CH0,0x158,0x00000000,,,,0,,ENG0_TXDATA1,Framing word bits 63:32
+60,WRITE,refill,4,CH0,0x160,0x00000000,,,,0,,ENG0_TXPUSH_CH0,Commit framing channel
+61,WRITE,refill,4,CH1,0x154,0x00000008,,,,0,,ENG0_TXDATA0,DATA0=8 bits 31:0
+62,WRITE,refill,4,CH1,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA0=8 bits 63:32
+63,WRITE,refill,4,CH1,0x164,0x00000000,,,,0,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+64,WRITE,refill,4,CH2,0x154,0x00000009,,,,0,,ENG0_TXDATA0,DATA1=9 bits 31:0
+65,WRITE,refill,4,CH2,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA1=9 bits 63:32
+66,WRITE,refill,4,CH2,0x168,0x00000000,,,,0,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+67,WRITE,refill,4,CTL,0x16C,0x00000040,,,,0,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+68,POLL,tx_wait,5,,0x150,,0x00000F00,0x00000000,masked_eq,1,100,ENG0_TX_FIFO_FLAGS,Wait until FULL[3:0] is zero before writing a complete frame
+69,WRITE,refill,5,CH0,0x154,0x00000001,,,,0,,ENG0_TXDATA0,Framing word bits 31:0
+70,WRITE,refill,5,CH0,0x158,0x00000000,,,,0,,ENG0_TXDATA1,Framing word bits 63:32
+71,WRITE,refill,5,CH0,0x160,0x00000000,,,,0,,ENG0_TXPUSH_CH0,Commit framing channel
+72,WRITE,refill,5,CH1,0x154,0x0000000A,,,,0,,ENG0_TXDATA0,DATA0=10 bits 31:0
+73,WRITE,refill,5,CH1,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA0=10 bits 63:32
+74,WRITE,refill,5,CH1,0x164,0x00000000,,,,0,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+75,WRITE,refill,5,CH2,0x154,0x0000000B,,,,0,,ENG0_TXDATA0,DATA1=11 bits 31:0
+76,WRITE,refill,5,CH2,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA1=11 bits 63:32
+77,WRITE,refill,5,CH2,0x168,0x00000000,,,,0,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+78,WRITE,refill,5,CTL,0x16C,0x00000040,,,,0,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+79,POLL,tx_wait,6,,0x150,,0x00000F00,0x00000000,masked_eq,1,100,ENG0_TX_FIFO_FLAGS,Wait until FULL[3:0] is zero before writing a complete frame
+80,WRITE,refill,6,CH0,0x154,0x00000001,,,,0,,ENG0_TXDATA0,Framing word bits 31:0
+81,WRITE,refill,6,CH0,0x158,0x00000000,,,,0,,ENG0_TXDATA1,Framing word bits 63:32
+82,WRITE,refill,6,CH0,0x160,0x00000000,,,,0,,ENG0_TXPUSH_CH0,Commit framing channel
+83,WRITE,refill,6,CH1,0x154,0x0000000C,,,,0,,ENG0_TXDATA0,DATA0=12 bits 31:0
+84,WRITE,refill,6,CH1,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA0=12 bits 63:32
+85,WRITE,refill,6,CH1,0x164,0x00000000,,,,0,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+86,WRITE,refill,6,CH2,0x154,0x0000000D,,,,0,,ENG0_TXDATA0,DATA1=13 bits 31:0
+87,WRITE,refill,6,CH2,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA1=13 bits 63:32
+88,WRITE,refill,6,CH2,0x168,0x00000000,,,,0,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+89,WRITE,refill,6,CTL,0x16C,0x00000040,,,,0,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+90,POLL,tx_wait,7,,0x150,,0x00000F00,0x00000000,masked_eq,1,100,ENG0_TX_FIFO_FLAGS,Wait until FULL[3:0] is zero before writing a complete frame
+91,WRITE,refill,7,CH0,0x154,0x00000001,,,,0,,ENG0_TXDATA0,Framing word bits 31:0
+92,WRITE,refill,7,CH0,0x158,0x00000000,,,,0,,ENG0_TXDATA1,Framing word bits 63:32
+93,WRITE,refill,7,CH0,0x160,0x00000000,,,,0,,ENG0_TXPUSH_CH0,Commit framing channel
+94,WRITE,refill,7,CH1,0x154,0x0000000E,,,,0,,ENG0_TXDATA0,DATA0=14 bits 31:0
+95,WRITE,refill,7,CH1,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA0=14 bits 63:32
+96,WRITE,refill,7,CH1,0x164,0x00000000,,,,0,,ENG0_TXPUSH_CH1,Commit DATA0 channel
+97,WRITE,refill,7,CH2,0x154,0x0000000F,,,,0,,ENG0_TXDATA0,DATA1=15 bits 31:0
+98,WRITE,refill,7,CH2,0x158,0x00000000,,,,0,,ENG0_TXDATA1,DATA1=15 bits 63:32
+99,WRITE,refill,7,CH2,0x168,0x00000000,,,,0,,ENG0_TXPUSH_CH2,Commit DATA1 channel
+100,WRITE,refill,7,CTL,0x16C,0x00000040,,,,0,,ENG0_TXPUSH_CTL,Commit LEN=64 LOOP=0
+101,POLL,clock_check,,,0x218,,0x01000000,0x01000000,masked_eq,1,100,ENG1_SCLK_METER,Wait until VALID is one
+102,READ_CHECK,clock_check,,,0x218,,0x00FFFFFF,0x00000190,masked_eq,1,,ENG1_SCLK_METER,Confirm period is 400 PCLK cycles for 1 MHz
+103,POLL,rx_wait,0,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+104,WRITE,rx_pop,0,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 0 channel 0 into shared RX staging
+105,READ_CHECK,rx_read,0,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 0 channel 0 word 0
+106,READ_CHECK,rx_read,0,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 0 channel 0 word 1
+107,READ_CHECK,rx_read,0,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 0 channel 0 word 2
+108,READ_CHECK,rx_read,0,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 0 channel 0 word 3
+109,WRITE,rx_pop,0,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 0 channel 1 into shared RX staging
+110,READ_CHECK,rx_read,0,CH1,0x2A0,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA0,Check frame 0 channel 1 word 0
+111,READ_CHECK,rx_read,0,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 0 channel 1 word 1
+112,READ_CHECK,rx_read,0,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 0 channel 1 word 2
+113,READ_CHECK,rx_read,0,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 0 channel 1 word 3
+114,WRITE,rx_pop,0,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 0 channel 2 into shared RX staging
+115,READ_CHECK,rx_read,0,CH2,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 0 channel 2 word 0
+116,READ_CHECK,rx_read,0,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 0 channel 2 word 1
+117,READ_CHECK,rx_read,0,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 0 channel 2 word 2
+118,READ_CHECK,rx_read,0,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 0 channel 2 word 3
+119,POLL,rx_wait,1,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+120,WRITE,rx_pop,1,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 1 channel 0 into shared RX staging
+121,READ_CHECK,rx_read,1,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 1 channel 0 word 0
+122,READ_CHECK,rx_read,1,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 1 channel 0 word 1
+123,READ_CHECK,rx_read,1,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 1 channel 0 word 2
+124,READ_CHECK,rx_read,1,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 1 channel 0 word 3
+125,WRITE,rx_pop,1,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 1 channel 1 into shared RX staging
+126,READ_CHECK,rx_read,1,CH1,0x2A0,,0xFFFFFFFF,0x00000002,masked_eq,1,,ENG1_RXDATA0,Check frame 1 channel 1 word 0
+127,READ_CHECK,rx_read,1,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 1 channel 1 word 1
+128,READ_CHECK,rx_read,1,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 1 channel 1 word 2
+129,READ_CHECK,rx_read,1,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 1 channel 1 word 3
+130,WRITE,rx_pop,1,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 1 channel 2 into shared RX staging
+131,READ_CHECK,rx_read,1,CH2,0x2A0,,0xFFFFFFFF,0x00000003,masked_eq,1,,ENG1_RXDATA0,Check frame 1 channel 2 word 0
+132,READ_CHECK,rx_read,1,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 1 channel 2 word 1
+133,READ_CHECK,rx_read,1,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 1 channel 2 word 2
+134,READ_CHECK,rx_read,1,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 1 channel 2 word 3
+135,POLL,rx_wait,2,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+136,WRITE,rx_pop,2,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 2 channel 0 into shared RX staging
+137,READ_CHECK,rx_read,2,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 2 channel 0 word 0
+138,READ_CHECK,rx_read,2,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 2 channel 0 word 1
+139,READ_CHECK,rx_read,2,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 2 channel 0 word 2
+140,READ_CHECK,rx_read,2,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 2 channel 0 word 3
+141,WRITE,rx_pop,2,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 2 channel 1 into shared RX staging
+142,READ_CHECK,rx_read,2,CH1,0x2A0,,0xFFFFFFFF,0x00000004,masked_eq,1,,ENG1_RXDATA0,Check frame 2 channel 1 word 0
+143,READ_CHECK,rx_read,2,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 2 channel 1 word 1
+144,READ_CHECK,rx_read,2,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 2 channel 1 word 2
+145,READ_CHECK,rx_read,2,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 2 channel 1 word 3
+146,WRITE,rx_pop,2,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 2 channel 2 into shared RX staging
+147,READ_CHECK,rx_read,2,CH2,0x2A0,,0xFFFFFFFF,0x00000005,masked_eq,1,,ENG1_RXDATA0,Check frame 2 channel 2 word 0
+148,READ_CHECK,rx_read,2,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 2 channel 2 word 1
+149,READ_CHECK,rx_read,2,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 2 channel 2 word 2
+150,READ_CHECK,rx_read,2,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 2 channel 2 word 3
+151,POLL,rx_wait,3,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+152,WRITE,rx_pop,3,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 3 channel 0 into shared RX staging
+153,READ_CHECK,rx_read,3,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 3 channel 0 word 0
+154,READ_CHECK,rx_read,3,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 3 channel 0 word 1
+155,READ_CHECK,rx_read,3,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 3 channel 0 word 2
+156,READ_CHECK,rx_read,3,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 3 channel 0 word 3
+157,WRITE,rx_pop,3,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 3 channel 1 into shared RX staging
+158,READ_CHECK,rx_read,3,CH1,0x2A0,,0xFFFFFFFF,0x00000006,masked_eq,1,,ENG1_RXDATA0,Check frame 3 channel 1 word 0
+159,READ_CHECK,rx_read,3,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 3 channel 1 word 1
+160,READ_CHECK,rx_read,3,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 3 channel 1 word 2
+161,READ_CHECK,rx_read,3,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 3 channel 1 word 3
+162,WRITE,rx_pop,3,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 3 channel 2 into shared RX staging
+163,READ_CHECK,rx_read,3,CH2,0x2A0,,0xFFFFFFFF,0x00000007,masked_eq,1,,ENG1_RXDATA0,Check frame 3 channel 2 word 0
+164,READ_CHECK,rx_read,3,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 3 channel 2 word 1
+165,READ_CHECK,rx_read,3,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 3 channel 2 word 2
+166,READ_CHECK,rx_read,3,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 3 channel 2 word 3
+167,POLL,rx_wait,4,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+168,WRITE,rx_pop,4,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 4 channel 0 into shared RX staging
+169,READ_CHECK,rx_read,4,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 4 channel 0 word 0
+170,READ_CHECK,rx_read,4,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 4 channel 0 word 1
+171,READ_CHECK,rx_read,4,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 4 channel 0 word 2
+172,READ_CHECK,rx_read,4,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 4 channel 0 word 3
+173,WRITE,rx_pop,4,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 4 channel 1 into shared RX staging
+174,READ_CHECK,rx_read,4,CH1,0x2A0,,0xFFFFFFFF,0x00000008,masked_eq,1,,ENG1_RXDATA0,Check frame 4 channel 1 word 0
+175,READ_CHECK,rx_read,4,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 4 channel 1 word 1
+176,READ_CHECK,rx_read,4,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 4 channel 1 word 2
+177,READ_CHECK,rx_read,4,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 4 channel 1 word 3
+178,WRITE,rx_pop,4,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 4 channel 2 into shared RX staging
+179,READ_CHECK,rx_read,4,CH2,0x2A0,,0xFFFFFFFF,0x00000009,masked_eq,1,,ENG1_RXDATA0,Check frame 4 channel 2 word 0
+180,READ_CHECK,rx_read,4,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 4 channel 2 word 1
+181,READ_CHECK,rx_read,4,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 4 channel 2 word 2
+182,READ_CHECK,rx_read,4,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 4 channel 2 word 3
+183,POLL,rx_wait,5,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+184,WRITE,rx_pop,5,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 5 channel 0 into shared RX staging
+185,READ_CHECK,rx_read,5,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 5 channel 0 word 0
+186,READ_CHECK,rx_read,5,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 5 channel 0 word 1
+187,READ_CHECK,rx_read,5,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 5 channel 0 word 2
+188,READ_CHECK,rx_read,5,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 5 channel 0 word 3
+189,WRITE,rx_pop,5,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 5 channel 1 into shared RX staging
+190,READ_CHECK,rx_read,5,CH1,0x2A0,,0xFFFFFFFF,0x0000000A,masked_eq,1,,ENG1_RXDATA0,Check frame 5 channel 1 word 0
+191,READ_CHECK,rx_read,5,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 5 channel 1 word 1
+192,READ_CHECK,rx_read,5,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 5 channel 1 word 2
+193,READ_CHECK,rx_read,5,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 5 channel 1 word 3
+194,WRITE,rx_pop,5,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 5 channel 2 into shared RX staging
+195,READ_CHECK,rx_read,5,CH2,0x2A0,,0xFFFFFFFF,0x0000000B,masked_eq,1,,ENG1_RXDATA0,Check frame 5 channel 2 word 0
+196,READ_CHECK,rx_read,5,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 5 channel 2 word 1
+197,READ_CHECK,rx_read,5,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 5 channel 2 word 2
+198,READ_CHECK,rx_read,5,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 5 channel 2 word 3
+199,POLL,rx_wait,6,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+200,WRITE,rx_pop,6,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 6 channel 0 into shared RX staging
+201,READ_CHECK,rx_read,6,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 6 channel 0 word 0
+202,READ_CHECK,rx_read,6,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 6 channel 0 word 1
+203,READ_CHECK,rx_read,6,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 6 channel 0 word 2
+204,READ_CHECK,rx_read,6,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 6 channel 0 word 3
+205,WRITE,rx_pop,6,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 6 channel 1 into shared RX staging
+206,READ_CHECK,rx_read,6,CH1,0x2A0,,0xFFFFFFFF,0x0000000C,masked_eq,1,,ENG1_RXDATA0,Check frame 6 channel 1 word 0
+207,READ_CHECK,rx_read,6,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 6 channel 1 word 1
+208,READ_CHECK,rx_read,6,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 6 channel 1 word 2
+209,READ_CHECK,rx_read,6,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 6 channel 1 word 3
+210,WRITE,rx_pop,6,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 6 channel 2 into shared RX staging
+211,READ_CHECK,rx_read,6,CH2,0x2A0,,0xFFFFFFFF,0x0000000D,masked_eq,1,,ENG1_RXDATA0,Check frame 6 channel 2 word 0
+212,READ_CHECK,rx_read,6,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 6 channel 2 word 1
+213,READ_CHECK,rx_read,6,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 6 channel 2 word 2
+214,READ_CHECK,rx_read,6,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 6 channel 2 word 3
+215,POLL,rx_wait,7,,0x28C,,0x0000F000,0x00000000,masked_ne,0,100,ENG1_RX_FIFO_STAT,Wait until FRAMES[15:12] is nonzero
+216,WRITE,rx_pop,7,CH0,0x294,0x00000001,,,,0,,ENG1_RXPOP_CH0,Pop frame 7 channel 0 into shared RX staging
+217,READ_CHECK,rx_read,7,CH0,0x2A0,,0xFFFFFFFF,0x00000001,masked_eq,1,,ENG1_RXDATA0,Check frame 7 channel 0 word 0
+218,READ_CHECK,rx_read,7,CH0,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 7 channel 0 word 1
+219,READ_CHECK,rx_read,7,CH0,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 7 channel 0 word 2
+220,READ_CHECK,rx_read,7,CH0,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 7 channel 0 word 3
+221,WRITE,rx_pop,7,CH1,0x298,0x00000001,,,,0,,ENG1_RXPOP_CH1,Pop frame 7 channel 1 into shared RX staging
+222,READ_CHECK,rx_read,7,CH1,0x2A0,,0xFFFFFFFF,0x0000000E,masked_eq,1,,ENG1_RXDATA0,Check frame 7 channel 1 word 0
+223,READ_CHECK,rx_read,7,CH1,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 7 channel 1 word 1
+224,READ_CHECK,rx_read,7,CH1,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 7 channel 1 word 2
+225,READ_CHECK,rx_read,7,CH1,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 7 channel 1 word 3
+226,WRITE,rx_pop,7,CH2,0x29C,0x00000001,,,,0,,ENG1_RXPOP_CH2,Pop frame 7 channel 2 into shared RX staging
+227,READ_CHECK,rx_read,7,CH2,0x2A0,,0xFFFFFFFF,0x0000000F,masked_eq,1,,ENG1_RXDATA0,Check frame 7 channel 2 word 0
+228,READ_CHECK,rx_read,7,CH2,0x2A4,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA1,Check frame 7 channel 2 word 1
+229,READ_CHECK,rx_read,7,CH2,0x2A8,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA2,Check frame 7 channel 2 word 2
+230,READ_CHECK,rx_read,7,CH2,0x2AC,,0xFFFFFFFF,0x00000000,masked_eq,1,,ENG1_RXDATA3,Check frame 7 channel 2 word 3
+231,WRITE,stop,,,0x280,0x00000000,,,,0,,ENG1_RX_CTRL,Disable ENG1 capture
+232,WRITE,stop,,,0x100,0x00000000,,,,0,,ENG0_CFG,Park ENG0
+233,WRITE,stop,,,0x200,0x00000000,,,,0,,ENG1_CFG,Park ENG1
