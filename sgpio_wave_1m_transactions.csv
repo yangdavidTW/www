@@ -1,0 +1,57 @@
+seq,operation,phase,address_offset,write_value,register,description
+1,WRITE,A_config,0x110,0x0000389c,PINMUX,"ch0->LD, ch1->O, ch2->I, LDD released"
+2,WRITE,A_config,0x104,0x000000c7,CLKDIV_HI,"SCLK high phase, in pclk-1"
+3,WRITE,A_config,0x10c,0x000000c7,CLKDIV_LO,"SCLK low phase,  in pclk-1"
+4,WRITE,A_config,0x140,0x0000000e,TX_CTRL,"CH_IDLE=7 all three wires park high, launch on rising"
+5,WRITE,A_config,0x100,0x00000091,CFG,"TRI_IDLE|CK_IDLE|EN -- enable, do NOT start yet"
+6,WRITE,B_wake_frame,0x154,0x00000001,TXDATA0,bits  31:0
+7,WRITE,B_wake_frame,0x158,0x00000000,TXDATA1,bits  63:32
+8,WRITE,B_wake_frame,0x15c,0x00000000,TXDATA2,bits  95:64
+9,WRITE,B_wake_frame,0x160,0x00000000,TXDATA3,bits 127:96
+10,WRITE,B_wake_frame,0x164,0x00000000,TXDATA4,bits 159:128
+11,WRITE,B_wake_frame,0x168,0x00000000,TXDATA5,bits 191:160
+12,WRITE,B_wake_frame,0x16c,0x00000000,TXDATA6,bits 223:192
+13,WRITE,B_wake_frame,0x170,0x00000000,TXPUSH_CH0,wake: WAKE zeros then the startup assertion
+14,WRITE,B_wake_frame,0x154,0xffffffff,TXDATA0,bits  31:0
+15,WRITE,B_wake_frame,0x158,0xffffffff,TXDATA1,bits  63:32
+16,WRITE,B_wake_frame,0x15c,0xffffffff,TXDATA2,bits  95:64
+17,WRITE,B_wake_frame,0x160,0xffffffff,TXDATA3,bits 127:96
+18,WRITE,B_wake_frame,0x164,0xffffffff,TXDATA4,bits 159:128
+19,WRITE,B_wake_frame,0x168,0xffffffff,TXDATA5,bits 191:160
+20,WRITE,B_wake_frame,0x16c,0xffffffff,TXDATA6,bits 223:192
+21,WRITE,B_wake_frame,0x174,0xffffffff,TXPUSH_CH1,wake: data lines released high
+22,WRITE,B_wake_frame,0x154,0xffffffff,TXDATA0,bits  31:0
+23,WRITE,B_wake_frame,0x158,0xffffffff,TXDATA1,bits  63:32
+24,WRITE,B_wake_frame,0x15c,0xffffffff,TXDATA2,bits  95:64
+25,WRITE,B_wake_frame,0x160,0xffffffff,TXDATA3,bits 127:96
+26,WRITE,B_wake_frame,0x164,0xffffffff,TXDATA4,bits 159:128
+27,WRITE,B_wake_frame,0x168,0xffffffff,TXDATA5,bits 191:160
+28,WRITE,B_wake_frame,0x16c,0xffffffff,TXDATA6,bits 223:192
+29,WRITE,B_wake_frame,0x178,0xffffffff,TXPUSH_CH2,wake: data lines released high
+30,WRITE,B_wake_frame,0x17c,0x00000007,TXPUSH_CTL,"LEN=7, LOOP=0 -- the wake burst plays once"
+31,WRITE,C_data_frame,0x154,0x00300001,TXDATA0,bits  31:0
+32,WRITE,C_data_frame,0x158,0x00000000,TXDATA1,bits  63:32
+33,WRITE,C_data_frame,0x15c,0x00000000,TXDATA2,bits  95:64
+34,WRITE,C_data_frame,0x160,0x00000000,TXDATA3,bits 127:96
+35,WRITE,C_data_frame,0x164,0x00000000,TXDATA4,bits 159:128
+36,WRITE,C_data_frame,0x168,0x00000000,TXDATA5,bits 191:160
+37,WRITE,C_data_frame,0x16c,0x00000000,TXDATA6,bits 223:192
+38,WRITE,C_data_frame,0x170,0x00000000,TXPUSH_CH0,commit -> SLOAD
+39,WRITE,C_data_frame,0x154,0xff11635f,TXDATA0,bits  31:0
+40,WRITE,C_data_frame,0x158,0xffffffff,TXDATA1,bits  63:32
+41,WRITE,C_data_frame,0x15c,0xffffffff,TXDATA2,bits  95:64
+42,WRITE,C_data_frame,0x160,0xffffffff,TXDATA3,bits 127:96
+43,WRITE,C_data_frame,0x164,0xffffffff,TXDATA4,bits 159:128
+44,WRITE,C_data_frame,0x168,0xffffffff,TXDATA5,bits 191:160
+45,WRITE,C_data_frame,0x16c,0xffffffff,TXDATA6,bits 223:192
+46,WRITE,C_data_frame,0x174,0xffffffff,TXPUSH_CH1,"commit -> SDATAOUT0, drives 0..7"
+47,WRITE,C_data_frame,0x154,0xff35f116,TXDATA0,bits  31:0
+48,WRITE,C_data_frame,0x158,0xffffffff,TXDATA1,bits  63:32
+49,WRITE,C_data_frame,0x15c,0xffffffff,TXDATA2,bits  95:64
+50,WRITE,C_data_frame,0x160,0xffffffff,TXDATA3,bits 127:96
+51,WRITE,C_data_frame,0x164,0xffffffff,TXDATA4,bits 159:128
+52,WRITE,C_data_frame,0x168,0xffffffff,TXDATA5,bits 191:160
+53,WRITE,C_data_frame,0x16c,0xffffffff,TXDATA6,bits 223:192
+54,WRITE,C_data_frame,0x178,0xffffffff,TXPUSH_CH2,"commit -> SDATAOUT1, drives 4..7"
+55,WRITE,C_data_frame,0x17c,0x00000218,TXPUSH_CTL,"LEN=24, LOOP=1  -- one write, repeats for ever"
+56,WRITE,D_start,0x100,0x00000093,CFG,"+START, a SEPARATE write -- and the last one"
