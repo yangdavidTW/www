@@ -1,0 +1,805 @@
+seq,operation,phase,address_offset,register,write_value,redundant_from_reset,read_mask,compare,read_expect,description
+1,WRITE,A_park_and_flush,0x100,ENG0_CFG,0x00000000,,,,,ENG0_CFG           park the transmitter
+2,WRITE,A_park_and_flush,0x200,ENG1_CFG,0x00000000,,,,,ENG1_CFG           park the receiver
+3,WRITE,A_park_and_flush,0x148,ENG0_TX_FIFO_CTRL,0x00000101,,,,,"ENG0_TX_FIFO_CTRL  FLUSH all 4 TX FIFOs, WM=1"
+4,WRITE,A_park_and_flush,0x290,ENG1_RX_CTRL,0x00000000,,,,,ENG1_RX_CTRL       capture off for now
+5,WRITE,A_park_and_flush,0x298,ENG1_RX_FIFO_CTRL,0x00000101,,,,,"ENG1_RX_FIFO_CTRL  FLUSH all 3 RX FIFOs, WM=1"
+6,WRITE,B_static_configuration,0x104,ENG0_CLKDIV_HI,0x000000c7,,,,,ENG0_CLKDIV_HI     199 -> 200 pclk high
+7,WRITE,B_static_configuration,0x10c,ENG0_CLKDIV_LO,0x000000c7,,,,,"ENG0_CLKDIV_LO     199 -> 200 pclk low, 400 total = 1 MHz"
+8,WRITE,C_eng1_becomes_a_slave,0x200,ENG1_CFG,0x00000099,,,,,ENG1_CFG           TRI_IDLE|CK_IDLE|MODE=slave|EN
+9,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+10,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,yes,,,,ENG0_TXDATA1     ch0 bits 63:32
+11,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+12,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000000,,,,,ENG0_TXDATA0     ch1 bits 31:0
+13,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch1 bits 63:32
+14,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+15,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000008,,,,,ENG0_TXDATA0     ch2 bits 31:0
+16,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000008,,,,,ENG0_TXDATA1     ch2 bits 63:32
+17,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+18,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+19,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+20,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+21,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+22,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch1 bits 31:0
+23,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000001,,,,,ENG0_TXDATA1     ch1 bits 63:32
+24,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+25,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000009,,,,,ENG0_TXDATA0     ch2 bits 31:0
+26,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000009,,,,,ENG0_TXDATA1     ch2 bits 63:32
+27,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+28,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+29,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+30,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+31,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+32,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000002,,,,,ENG0_TXDATA0     ch1 bits 31:0
+33,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000002,,,,,ENG0_TXDATA1     ch1 bits 63:32
+34,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+35,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000a,,,,,ENG0_TXDATA0     ch2 bits 31:0
+36,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000a,,,,,ENG0_TXDATA1     ch2 bits 63:32
+37,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+38,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+39,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+40,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+41,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+42,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000003,,,,,ENG0_TXDATA0     ch1 bits 31:0
+43,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000003,,,,,ENG0_TXDATA1     ch1 bits 63:32
+44,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+45,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000b,,,,,ENG0_TXDATA0     ch2 bits 31:0
+46,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000b,,,,,ENG0_TXDATA1     ch2 bits 63:32
+47,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+48,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+49,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+50,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+51,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+52,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000004,,,,,ENG0_TXDATA0     ch1 bits 31:0
+53,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000004,,,,,ENG0_TXDATA1     ch1 bits 63:32
+54,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+55,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000c,,,,,ENG0_TXDATA0     ch2 bits 31:0
+56,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000c,,,,,ENG0_TXDATA1     ch2 bits 63:32
+57,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+58,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+59,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+60,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+61,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+62,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000005,,,,,ENG0_TXDATA0     ch1 bits 31:0
+63,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000005,,,,,ENG0_TXDATA1     ch1 bits 63:32
+64,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+65,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000d,,,,,ENG0_TXDATA0     ch2 bits 31:0
+66,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000d,,,,,ENG0_TXDATA1     ch2 bits 63:32
+67,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+68,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+69,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+70,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+71,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+72,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000006,,,,,ENG0_TXDATA0     ch1 bits 31:0
+73,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000006,,,,,ENG0_TXDATA1     ch1 bits 63:32
+74,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+75,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000e,,,,,ENG0_TXDATA0     ch2 bits 31:0
+76,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000e,,,,,ENG0_TXDATA1     ch2 bits 63:32
+77,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+78,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+79,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+80,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+81,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+82,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000007,,,,,ENG0_TXDATA0     ch1 bits 31:0
+83,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000007,,,,,ENG0_TXDATA1     ch1 bits 63:32
+84,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+85,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000f,,,,,ENG0_TXDATA0     ch2 bits 31:0
+86,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000f,,,,,ENG0_TXDATA1     ch2 bits 63:32
+87,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+88,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+89,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+90,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+91,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+92,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000008,,,,,ENG0_TXDATA0     ch1 bits 31:0
+93,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000008,,,,,ENG0_TXDATA1     ch1 bits 63:32
+94,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+95,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000010,,,,,ENG0_TXDATA0     ch2 bits 31:0
+96,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000010,,,,,ENG0_TXDATA1     ch2 bits 63:32
+97,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+98,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+99,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+100,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+101,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+102,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000009,,,,,ENG0_TXDATA0     ch1 bits 31:0
+103,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000009,,,,,ENG0_TXDATA1     ch1 bits 63:32
+104,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+105,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000011,,,,,ENG0_TXDATA0     ch2 bits 31:0
+106,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000011,,,,,ENG0_TXDATA1     ch2 bits 63:32
+107,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+108,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+109,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+110,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+111,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+112,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000a,,,,,ENG0_TXDATA0     ch1 bits 31:0
+113,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000a,,,,,ENG0_TXDATA1     ch1 bits 63:32
+114,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+115,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000012,,,,,ENG0_TXDATA0     ch2 bits 31:0
+116,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000012,,,,,ENG0_TXDATA1     ch2 bits 63:32
+117,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+118,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+119,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+120,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+121,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+122,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000b,,,,,ENG0_TXDATA0     ch1 bits 31:0
+123,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000b,,,,,ENG0_TXDATA1     ch1 bits 63:32
+124,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+125,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000013,,,,,ENG0_TXDATA0     ch2 bits 31:0
+126,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000013,,,,,ENG0_TXDATA1     ch2 bits 63:32
+127,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+128,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+129,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+130,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+131,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+132,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000c,,,,,ENG0_TXDATA0     ch1 bits 31:0
+133,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000c,,,,,ENG0_TXDATA1     ch1 bits 63:32
+134,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+135,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000014,,,,,ENG0_TXDATA0     ch2 bits 31:0
+136,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000014,,,,,ENG0_TXDATA1     ch2 bits 63:32
+137,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+138,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+139,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+140,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+141,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+142,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000d,,,,,ENG0_TXDATA0     ch1 bits 31:0
+143,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000d,,,,,ENG0_TXDATA1     ch1 bits 63:32
+144,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+145,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000015,,,,,ENG0_TXDATA0     ch2 bits 31:0
+146,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000015,,,,,ENG0_TXDATA1     ch2 bits 63:32
+147,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+148,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+149,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+150,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+151,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+152,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000e,,,,,ENG0_TXDATA0     ch1 bits 31:0
+153,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000e,,,,,ENG0_TXDATA1     ch1 bits 63:32
+154,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+155,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000016,,,,,ENG0_TXDATA0     ch2 bits 31:0
+156,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000016,,,,,ENG0_TXDATA1     ch2 bits 63:32
+157,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+158,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+159,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+160,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+161,WRITE,D_preload_payloads_0_15,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+162,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x0000000f,,,,,ENG0_TXDATA0     ch1 bits 31:0
+163,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x0000000f,,,,,ENG0_TXDATA1     ch1 bits 63:32
+164,WRITE,D_preload_payloads_0_15,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+165,WRITE,D_preload_payloads_0_15,0x154,ENG0_TXDATA0,0x00000017,,,,,ENG0_TXDATA0     ch2 bits 31:0
+166,WRITE,D_preload_payloads_0_15,0x158,ENG0_TXDATA1,0x00000017,,,,,ENG0_TXDATA1     ch2 bits 63:32
+167,WRITE,D_preload_payloads_0_15,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+168,WRITE,D_preload_payloads_0_15,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+169,READ,D_the_queue_is_full_what_firmware_sees,0x150,ENG0_TX_FIFO_FLAGS,,,0x00000f00,==,0x00000f00,ENG0_TX_FIFO_FLAGS all four TX FIFOs report FULL
+170,READ,D_the_queue_is_full_what_firmware_sees,0x150,ENG0_TX_FIFO_FLAGS,,,0x0000000f,==,0x00000000,ENG0_TX_FIFO_FLAGS and none of them reports EMPTY
+171,READ,D_the_queue_is_full_what_firmware_sees,0x14c,ENG0_TX_FIFO_STAT,,,0x0000001f,==,0x00000010,ENG0_TX_FIFO_STAT  channel 0 sits at the full depth
+172,READ,D_the_queue_is_full_what_firmware_sees,0x14c,ENG0_TX_FIFO_STAT,,,0x01f00000,==,0x01000000,ENG0_TX_FIFO_STAT  FRAMES equals the depth: a whole queue of frames
+173,READ,D_the_queue_is_full_what_firmware_sees,0x184,ENG0_TX_INT_STAT,,,0x00000020,==,0x00000000,ENG0_TX_INT_STAT   nothing has overflowed yet
+174,WRITE,D_the_queue_is_full_what_firmware_sees,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     staging still accepts
+175,WRITE,D_the_queue_is_full_what_firmware_sees,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     staging still accepts
+176,WRITE_REJECTED,D_the_queue_is_full_what_firmware_sees,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,"ENG0_TXPUSH_CH0  rejected, queue is full"
+177,WRITE,D_the_queue_is_full_what_firmware_sees,0x154,ENG0_TXDATA0,0xbaddf1f0,,,,,ENG0_TXDATA0     staging still accepts
+178,WRITE,D_the_queue_is_full_what_firmware_sees,0x158,ENG0_TXDATA1,0xbaddf1f0,,,,,ENG0_TXDATA1     staging still accepts
+179,WRITE_REJECTED,D_the_queue_is_full_what_firmware_sees,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,"ENG0_TXPUSH_CH1  rejected, queue is full"
+180,WRITE,D_the_queue_is_full_what_firmware_sees,0x154,ENG0_TXDATA0,0xbaddf1f0,,,,,ENG0_TXDATA0     staging still accepts
+181,WRITE,D_the_queue_is_full_what_firmware_sees,0x158,ENG0_TXDATA1,0xbaddf1f0,,,,,ENG0_TXDATA1     staging still accepts
+182,WRITE_REJECTED,D_the_queue_is_full_what_firmware_sees,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,"ENG0_TXPUSH_CH2  rejected, queue is full"
+183,WRITE_REJECTED,D_the_queue_is_full_what_firmware_sees,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,"ENG0_TXPUSH_CTL  rejected, queue is full"
+184,READ,D_the_queue_is_full_what_firmware_sees,0x184,ENG0_TX_INT_STAT,,,0x00000020,==,0x00000020,ENG0_TX_INT_STAT   OVF latched: a push was lost
+185,READ,D_the_queue_is_full_what_firmware_sees,0x14c,ENG0_TX_FIFO_STAT,,,0x0000001f,==,0x00000010,ENG0_TX_FIFO_STAT  still exactly full: the rejected word took no space
+186,WRITE,D_the_queue_is_full_what_firmware_sees,0x184,ENG0_TX_INT_STAT,0x00000020,,,,,ENG0_TX_INT_STAT   W1C the OVF we just caused
+187,READ,D_the_queue_is_full_what_firmware_sees,0x184,ENG0_TX_INT_STAT,,,0x00000020,==,0x00000000,ENG0_TX_INT_STAT   OVF cleared
+188,WRITE,E_start,0x100,ENG0_CFG,0x00000091,,,,,"ENG0_CFG           TRI_IDLE|CK_IDLE|EN, master"
+189,WRITE,E_start,0x290,ENG1_RX_CTRL,0x00004009,,,,,ENG1_RX_CTRL       EN|SLOAD framed|sample falling|LEN=64
+190,WRITE,E_start,0x100,ENG0_CFG,0x00000093,,,,,"ENG0_CFG           +START, a SEPARATE write, and LAST"
+191,POLL,E_the_link_is_up_check_the_clock_and_the_p,0x218,ENG1_SCLK_METER,,,0x01000000,==,0x01000000,ENG1_SCLK_METER    wait for VALID
+192,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+193,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+194,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+195,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+196,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+197,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+198,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+199,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+200,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+201,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+202,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+203,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000000,ENG1_RXDATA0     bits 31:0
+204,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+205,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+206,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+207,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+208,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+209,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+210,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+211,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+212,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000008,ENG1_RXDATA0     bits 31:0
+213,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000008,ENG1_RXDATA1     bits 63:32
+214,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+215,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+216,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+217,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+218,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+219,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+220,POLL,F_pop_each_captured_word_refill_as_we_go,0x150,ENG0_TX_FIFO_FLAGS,,,0x00000f00,==,0x00000000,ENG0_TX_FIFO_FLAGS wait for FULL == 0
+221,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+222,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+223,WRITE,F_pop_each_captured_word_refill_as_we_go,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+224,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000010,,,,,ENG0_TXDATA0     ch1 bits 31:0
+225,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000010,,,,,ENG0_TXDATA1     ch1 bits 63:32
+226,WRITE,F_pop_each_captured_word_refill_as_we_go,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+227,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000018,,,,,ENG0_TXDATA0     ch2 bits 31:0
+228,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000018,,,,,ENG0_TXDATA1     ch2 bits 63:32
+229,WRITE,F_pop_each_captured_word_refill_as_we_go,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+230,WRITE,F_pop_each_captured_word_refill_as_we_go,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+231,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+232,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+233,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+234,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+235,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+236,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+237,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+238,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+239,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+240,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+241,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+242,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+243,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000001,ENG1_RXDATA1     bits 63:32
+244,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+245,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+246,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+247,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+248,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+249,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+250,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+251,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000009,ENG1_RXDATA0     bits 31:0
+252,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000009,ENG1_RXDATA1     bits 63:32
+253,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+254,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+255,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+256,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+257,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+258,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+259,POLL,F_pop_each_captured_word_refill_as_we_go,0x150,ENG0_TX_FIFO_FLAGS,,,0x00000f00,==,0x00000000,ENG0_TX_FIFO_FLAGS wait for FULL == 0
+260,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+261,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+262,WRITE,F_pop_each_captured_word_refill_as_we_go,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+263,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000011,,,,,ENG0_TXDATA0     ch1 bits 31:0
+264,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000011,,,,,ENG0_TXDATA1     ch1 bits 63:32
+265,WRITE,F_pop_each_captured_word_refill_as_we_go,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+266,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000019,,,,,ENG0_TXDATA0     ch2 bits 31:0
+267,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000019,,,,,ENG0_TXDATA1     ch2 bits 63:32
+268,WRITE,F_pop_each_captured_word_refill_as_we_go,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+269,WRITE,F_pop_each_captured_word_refill_as_we_go,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+270,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+271,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+272,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+273,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+274,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+275,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+276,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+277,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+278,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+279,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+280,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+281,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000002,ENG1_RXDATA0     bits 31:0
+282,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000002,ENG1_RXDATA1     bits 63:32
+283,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+284,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+285,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+286,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+287,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+288,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+289,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+290,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000a,ENG1_RXDATA0     bits 31:0
+291,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000a,ENG1_RXDATA1     bits 63:32
+292,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+293,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+294,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+295,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+296,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+297,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+298,POLL,F_pop_each_captured_word_refill_as_we_go,0x150,ENG0_TX_FIFO_FLAGS,,,0x00000f00,==,0x00000000,ENG0_TX_FIFO_FLAGS wait for FULL == 0
+299,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+300,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+301,WRITE,F_pop_each_captured_word_refill_as_we_go,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+302,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000012,,,,,ENG0_TXDATA0     ch1 bits 31:0
+303,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000012,,,,,ENG0_TXDATA1     ch1 bits 63:32
+304,WRITE,F_pop_each_captured_word_refill_as_we_go,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+305,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x0000001a,,,,,ENG0_TXDATA0     ch2 bits 31:0
+306,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x0000001a,,,,,ENG0_TXDATA1     ch2 bits 63:32
+307,WRITE,F_pop_each_captured_word_refill_as_we_go,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+308,WRITE,F_pop_each_captured_word_refill_as_we_go,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+309,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+310,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+311,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+312,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+313,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+314,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+315,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+316,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+317,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+318,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+319,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+320,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000003,ENG1_RXDATA0     bits 31:0
+321,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000003,ENG1_RXDATA1     bits 63:32
+322,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+323,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+324,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+325,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+326,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+327,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+328,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+329,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000b,ENG1_RXDATA0     bits 31:0
+330,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000b,ENG1_RXDATA1     bits 63:32
+331,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+332,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+333,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+334,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+335,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+336,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+337,READ,F_pop_each_captured_word_refill_as_we_go,0x294,ENG1_RX_STAT,,,0x00000006,==,0x00000002,ENG1_RX_STAT       SYNCED=1 and LEN_ERR=0 mid stream
+338,READ,F_pop_each_captured_word_refill_as_we_go,0x218,ENG1_SCLK_METER,,,0x00ffffff,==,0x00000190,"ENG1_SCLK_METER    period = 400 pclk, i.e. 1 MHz"
+339,POLL,F_pop_each_captured_word_refill_as_we_go,0x150,ENG0_TX_FIFO_FLAGS,,,0x00000f00,==,0x00000000,ENG0_TX_FIFO_FLAGS wait for FULL == 0
+340,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000001,,,,,ENG0_TXDATA0     ch0 bits 31:0
+341,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000000,,,,,ENG0_TXDATA1     ch0 bits 63:32
+342,WRITE,F_pop_each_captured_word_refill_as_we_go,0x170,ENG0_TXPUSH_CH0,0x00000000,,,,,ENG0_TXPUSH_CH0  commit ch0
+343,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x00000013,,,,,ENG0_TXDATA0     ch1 bits 31:0
+344,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x00000013,,,,,ENG0_TXDATA1     ch1 bits 63:32
+345,WRITE,F_pop_each_captured_word_refill_as_we_go,0x174,ENG0_TXPUSH_CH1,0x00000000,,,,,ENG0_TXPUSH_CH1  commit ch1
+346,WRITE,F_pop_each_captured_word_refill_as_we_go,0x154,ENG0_TXDATA0,0x0000001b,,,,,ENG0_TXDATA0     ch2 bits 31:0
+347,WRITE,F_pop_each_captured_word_refill_as_we_go,0x158,ENG0_TXDATA1,0x0000001b,,,,,ENG0_TXDATA1     ch2 bits 63:32
+348,WRITE,F_pop_each_captured_word_refill_as_we_go,0x178,ENG0_TXPUSH_CH2,0x00000000,,,,,ENG0_TXPUSH_CH2  commit ch2
+349,WRITE,F_pop_each_captured_word_refill_as_we_go,0x17c,ENG0_TXPUSH_CTL,0x00000040,,,,,ENG0_TXPUSH_CTL  LEN=64 LOOP=0
+350,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+351,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+352,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+353,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+354,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+355,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+356,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+357,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+358,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+359,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+360,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+361,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000004,ENG1_RXDATA0     bits 31:0
+362,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000004,ENG1_RXDATA1     bits 63:32
+363,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+364,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+365,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+366,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+367,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+368,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+369,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+370,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000c,ENG1_RXDATA0     bits 31:0
+371,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000c,ENG1_RXDATA1     bits 63:32
+372,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+373,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+374,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+375,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+376,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+377,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+378,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+379,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+380,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+381,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+382,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+383,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+384,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+385,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+386,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+387,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+388,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+389,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000005,ENG1_RXDATA0     bits 31:0
+390,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000005,ENG1_RXDATA1     bits 63:32
+391,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+392,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+393,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+394,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+395,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+396,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+397,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+398,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000d,ENG1_RXDATA0     bits 31:0
+399,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000d,ENG1_RXDATA1     bits 63:32
+400,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+401,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+402,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+403,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+404,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+405,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+406,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+407,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+408,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+409,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+410,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+411,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+412,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+413,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+414,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+415,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+416,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+417,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000006,ENG1_RXDATA0     bits 31:0
+418,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000006,ENG1_RXDATA1     bits 63:32
+419,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+420,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+421,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+422,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+423,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+424,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+425,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+426,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000e,ENG1_RXDATA0     bits 31:0
+427,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000e,ENG1_RXDATA1     bits 63:32
+428,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+429,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+430,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+431,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+432,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+433,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+434,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+435,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+436,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+437,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+438,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+439,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+440,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+441,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+442,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+443,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+444,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+445,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000007,ENG1_RXDATA0     bits 31:0
+446,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000007,ENG1_RXDATA1     bits 63:32
+447,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+448,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+449,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+450,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+451,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+452,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+453,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+454,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000f,ENG1_RXDATA0     bits 31:0
+455,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000f,ENG1_RXDATA1     bits 63:32
+456,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+457,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+458,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+459,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+460,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+461,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+462,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+463,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+464,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+465,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+466,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+467,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+468,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+469,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+470,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+471,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+472,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+473,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000008,ENG1_RXDATA0     bits 31:0
+474,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000008,ENG1_RXDATA1     bits 63:32
+475,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+476,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+477,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+478,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+479,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+480,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+481,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+482,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000010,ENG1_RXDATA0     bits 31:0
+483,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000010,ENG1_RXDATA1     bits 63:32
+484,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+485,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+486,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+487,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+488,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+489,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+490,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+491,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+492,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+493,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+494,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+495,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+496,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+497,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+498,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+499,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+500,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+501,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000009,ENG1_RXDATA0     bits 31:0
+502,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000009,ENG1_RXDATA1     bits 63:32
+503,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+504,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+505,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+506,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+507,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+508,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+509,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+510,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000011,ENG1_RXDATA0     bits 31:0
+511,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000011,ENG1_RXDATA1     bits 63:32
+512,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+513,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+514,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+515,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+516,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+517,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+518,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+519,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+520,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+521,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+522,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+523,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+524,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+525,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+526,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+527,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+528,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+529,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000a,ENG1_RXDATA0     bits 31:0
+530,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000a,ENG1_RXDATA1     bits 63:32
+531,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+532,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+533,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+534,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+535,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+536,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+537,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+538,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000012,ENG1_RXDATA0     bits 31:0
+539,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000012,ENG1_RXDATA1     bits 63:32
+540,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+541,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+542,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+543,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+544,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+545,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+546,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+547,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+548,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+549,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+550,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+551,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+552,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+553,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+554,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+555,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+556,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+557,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000b,ENG1_RXDATA0     bits 31:0
+558,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000b,ENG1_RXDATA1     bits 63:32
+559,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+560,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+561,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+562,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+563,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+564,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+565,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+566,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000013,ENG1_RXDATA0     bits 31:0
+567,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000013,ENG1_RXDATA1     bits 63:32
+568,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+569,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+570,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+571,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+572,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+573,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+574,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+575,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+576,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+577,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+578,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+579,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+580,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+581,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+582,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+583,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+584,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+585,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000c,ENG1_RXDATA0     bits 31:0
+586,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000c,ENG1_RXDATA1     bits 63:32
+587,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+588,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+589,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+590,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+591,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+592,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+593,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+594,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000014,ENG1_RXDATA0     bits 31:0
+595,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000014,ENG1_RXDATA1     bits 63:32
+596,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+597,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+598,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+599,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+600,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+601,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+602,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+603,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+604,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+605,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+606,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+607,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+608,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+609,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+610,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+611,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+612,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+613,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000d,ENG1_RXDATA0     bits 31:0
+614,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000d,ENG1_RXDATA1     bits 63:32
+615,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+616,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+617,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+618,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+619,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+620,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+621,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+622,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000015,ENG1_RXDATA0     bits 31:0
+623,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000015,ENG1_RXDATA1     bits 63:32
+624,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+625,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+626,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+627,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+628,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+629,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+630,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+631,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+632,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+633,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+634,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+635,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+636,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+637,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+638,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+639,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+640,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+641,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000e,ENG1_RXDATA0     bits 31:0
+642,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000e,ENG1_RXDATA1     bits 63:32
+643,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+644,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+645,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+646,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+647,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+648,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+649,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+650,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000016,ENG1_RXDATA0     bits 31:0
+651,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000016,ENG1_RXDATA1     bits 63:32
+652,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+653,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+654,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+655,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+656,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+657,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+658,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+659,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+660,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+661,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+662,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+663,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+664,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+665,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+666,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+667,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+668,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+669,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000000f,ENG1_RXDATA0     bits 31:0
+670,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000000f,ENG1_RXDATA1     bits 63:32
+671,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+672,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+673,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+674,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+675,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+676,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+677,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+678,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000017,ENG1_RXDATA0     bits 31:0
+679,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000017,ENG1_RXDATA1     bits 63:32
+680,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+681,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+682,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+683,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+684,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+685,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+686,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+687,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+688,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+689,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+690,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+691,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+692,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+693,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+694,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+695,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+696,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+697,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000010,ENG1_RXDATA0     bits 31:0
+698,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000010,ENG1_RXDATA1     bits 63:32
+699,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+700,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+701,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+702,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+703,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+704,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+705,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+706,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000018,ENG1_RXDATA0     bits 31:0
+707,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000018,ENG1_RXDATA1     bits 63:32
+708,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+709,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+710,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+711,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+712,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+713,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+714,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+715,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+716,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+717,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+718,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+719,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+720,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+721,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+722,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+723,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+724,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+725,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000011,ENG1_RXDATA0     bits 31:0
+726,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000011,ENG1_RXDATA1     bits 63:32
+727,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+728,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+729,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+730,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+731,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+732,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+733,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+734,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000019,ENG1_RXDATA0     bits 31:0
+735,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000019,ENG1_RXDATA1     bits 63:32
+736,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+737,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+738,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+739,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+740,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+741,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+742,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+743,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+744,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+745,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+746,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+747,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+748,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+749,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+750,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+751,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+752,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+753,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000012,ENG1_RXDATA0     bits 31:0
+754,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000012,ENG1_RXDATA1     bits 63:32
+755,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+756,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+757,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+758,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+759,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+760,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+761,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+762,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000001a,ENG1_RXDATA0     bits 31:0
+763,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000001a,ENG1_RXDATA1     bits 63:32
+764,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+765,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+766,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+767,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+768,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+769,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+770,POLL,F_pop_each_captured_word_refill_as_we_go,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,!=,0x00000000,ENG1_RX_FIFO_STAT  wait for FRAMES != 0
+771,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a4,ENG1_RXPOP_CH0,0x00000001,,,,,ENG1_RXPOP_CH0     pop the framing wire
+772,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000001,ENG1_RXDATA0     bits 31:0
+773,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000000,ENG1_RXDATA1     bits 63:32
+774,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+775,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+776,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+777,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+778,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+779,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+780,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2a8,ENG1_RXPOP_CH1,0x00000001,,,,,ENG1_RXPOP_CH1     pop channel 1
+781,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x00000013,ENG1_RXDATA0     bits 31:0
+782,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x00000013,ENG1_RXDATA1     bits 63:32
+783,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+784,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+785,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+786,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+787,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+788,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+789,WRITE,F_pop_each_captured_word_refill_as_we_go,0x2ac,ENG1_RXPOP_CH2,0x00000001,,,,,ENG1_RXPOP_CH2     pop channel 2
+790,READ,F_pop_each_captured_word_refill_as_we_go,0x2b0,ENG1_RXDATA0,,,0xffffffff,==,0x0000001b,ENG1_RXDATA0     bits 31:0
+791,READ,F_pop_each_captured_word_refill_as_we_go,0x2b4,ENG1_RXDATA1,,,0xffffffff,==,0x0000001b,ENG1_RXDATA1     bits 63:32
+792,READ,F_pop_each_captured_word_refill_as_we_go,0x2b8,ENG1_RXDATA2,,,0xffffffff,==,0x00000000,"ENG1_RXDATA2     above LEN-1, must be zero"
+793,READ,F_pop_each_captured_word_refill_as_we_go,0x2bc,ENG1_RXDATA3,,,0xffffffff,==,0x00000000,"ENG1_RXDATA3     above LEN-1, must be zero"
+794,READ,F_pop_each_captured_word_refill_as_we_go,0x2c0,ENG1_RXDATA4,,,0xffffffff,==,0x00000000,"ENG1_RXDATA4     above LEN-1, must be zero"
+795,READ,F_pop_each_captured_word_refill_as_we_go,0x2c4,ENG1_RXDATA5,,,0xffffffff,==,0x00000000,"ENG1_RXDATA5     above LEN-1, must be zero"
+796,READ,F_pop_each_captured_word_refill_as_we_go,0x2c8,ENG1_RXDATA6,,,0xffffffff,==,0x00000000,"ENG1_RXDATA6     above LEN-1, must be zero"
+797,READ,F_pop_each_captured_word_refill_as_we_go,0x2cc,ENG1_RXDATA7,,,0xffffffff,==,0x00000000,"ENG1_RXDATA7     above LEN-1, must be zero"
+798,READ,F_the_stream_accounted_for_front_to_back,0x29c,ENG1_RX_FIFO_STAT,,,0x000f8000,==,0x00000000,"ENG1_RX_FIFO_STAT  every payload arrived, none left over"
+799,READ,F_the_stream_accounted_for_front_to_back,0x184,ENG0_TX_INT_STAT,,,0x00000020,==,0x00000000,ENG0_TX_INT_STAT   no push was lost once the loop took over
+800,READ,F_the_stream_accounted_for_front_to_back,0x2d4,ENG1_RX_INT_STAT,,,0x00000002,==,0x00000000,ENG1_RX_INT_STAT   and the receiver never overflowed either
+801,READ,F_the_stream_accounted_for_front_to_back,0x1a0,ENG0_RX_FIFO_FLAGS,,,0x00000007,==,0x00000007,ENG0_RX_FIFO_FLAGS all three capture FIFOs empty
+802,WRITE,G_teardown,0x290,ENG1_RX_CTRL,0x00000000,,,,,ENG1_RX_CTRL       capture off
+803,WRITE,G_teardown,0x100,ENG0_CFG,0x00000000,,,,,ENG0_CFG           park the transmitter
+804,WRITE,G_teardown,0x200,ENG1_CFG,0x00000000,,,,,ENG1_CFG           park the receiver
